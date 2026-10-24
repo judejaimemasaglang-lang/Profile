@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Comb Poultry — Premium Chickens</title>
+<style>
+:root{
+  --bg:#faf6f0; --card:#fff; --ink:#2b1d0e; --muted:#7a6652;
+  --accent:#c8792b; --accent2:#5a7a3a; --gold:#e6b96a; --dark:#1f1408;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--ink);line-height:1.6}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(31,20,8,.92);backdrop-filter:blur(8px);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{font-size:1.35rem;font-weight:700;letter-spacing:1px;display:flex;align-items:center;gap:8px}
+.brand .logo{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#f6d27a,#c8792b);display:grid;place-items:center;font-size:1.1rem}
+.navlinks{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.navlinks button{background:transparent;color:#f3e7d6;padding:8px 14px;border-radius:6px;font-size:.95rem;transition:.2s}
+.navlinks button:hover,.navlinks button.active{background:var(--accent);color:#fff}
+.auth{display:flex;gap:8px}
+.auth button{padding:8px 16px;border-radius:6px;font-size:.9rem}
+.login{background:transparent;color:#f3e7d6;border:1px solid #6b4a2a}
+.signup{background:var(--accent);color:#fff}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;min-height:78vh;display:grid;place-items:center;text-align:center;padding:60px 20px;background:linear-gradient(180deg,#f3e2c6 0%,#faf6f0 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:url('4 Months Old Chicken/1.jpg') center/cover no-repeat;opacity:.25}
+.hero .content{position:relative;max-width:780px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);color:var(--dark);margin-bottom:12px}
+.hero p{font-size:1.15rem;color:var(--muted);margin-bottom:28px}
+.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:12px 26px;border-radius:8px;font-weight:600;font-size:1rem;transition:.2s}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{background:#a8621f}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid #d6c4a8}
+.stats{display:flex;gap:40px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.stat b{font-size:1.6rem;color:var(--accent)}
+.stat span{display:block;font-size:.85rem;color:var(--muted)}
+
+/* SECTIONS */
+section{padding:60px 24px;max-width:1200px;margin:0 auto}
+h2{font-size:2rem;margin-bottom:8px;color:var(--dark)}
+.sub{color:var(--muted);margin-bottom:28px}
+
+/* CATEGORIES */
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.cat{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.06);cursor:pointer;transition:.25s}
+.cat:hover{transform:translateY(-4px)}
+.cat img{height:180px;width:100%;object-fit:cover}
+.cat .info{padding:16px}
+.cat h3{margin-bottom:4px}
+.cat p{color:var(--muted);font-size:.9rem}
+.cat .tag{display:inline-block;margin-top:8px;background:#efe3d0;color:var(--accent);padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600}
+
+/* PRODUCTS */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.toolbar input,.toolbar select{padding:10px 14px;border:1px solid #d6c4a8;border-radius:8px;background:#fff;font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.card img{height:200px;width:100%;object-fit:cover}
+.card .body{padding:14px}
+.card h4{margin-bottom:4px}
+.card .meta{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);margin-bottom:8px}
+.card .price{font-size:1.2rem;font-weight:700;color:var(--accent)}
+.card .avail{font-size:.8rem;padding:2px 8px;border-radius:4px}
+.avail.in{background:#e5f0dc;color:#3a6a1f}
+.avail.out{background:#fde2e2;color:#a02020}
+.card .actions{display:flex;gap:8px;margin-top:10px}
+.card .actions button{flex:1;padding:8px;border-radius:6px;font-size:.85rem}
+.view{background:#efe3d0;color:var(--ink)}
+.buy{background:var(--accent2);color:#fff}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;place-items:center;z-index:100;padding:20px}
+.modal.open{display:grid}
+.modalbox{background:#fff;border-radius:16px;max-width:720px;width:100%;max-height:90vh;overflow:auto;padding:24px;position:relative}
+.modalbox .close{position:absolute;top:12px;right:16px;font-size:1.5rem;cursor:pointer;background:none;color:var(--muted)}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.detail img{border-radius:10px;height:260px;width:100%;object-fit:cover}
+.detail h3{margin-bottom:8px}
+.detail ul{list-style:none;margin:12px 0}
+.detail li{padding:6px 0;border-bottom:1px dashed #e6d9c4;font-size:.9rem}
+.detail li b{color:var(--accent)}
+
+/* ADMIN */
+.admin{background:#fff;border-radius:14px;padding:24px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.form input,.form select,.form textarea{padding:10px;border:1px solid #d6c4a8;border-radius:8px;font-size:.9rem;width:100%}
+.form textarea{grid-column:1/-1;min-height:70px}
+.form button{grid-column:1/-1;padding:12px;background:var(--accent);color:#fff;border-radius:8px;font-weight:600}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.9rem}
+th,td{padding:10px;border-bottom:1px solid #eee;text-align:left}
+th{background:#f3e7d6}
+td button{padding:4px 10px;border-radius:4px;margin-right:4px;font-size:.8rem}
+.edit{background:#efe3d0}
+.del{background:#fde2e2;color:#a02020}
+
+/* ABOUT / CONTACT */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.about img{border-radius:14px;height:320px;width:100%;object-fit:cover}
+.contact form{display:grid;gap:12px;max-width:520px}
+.contact input,.contact textarea{padding:10px;border:1px solid #d6c4a8;border-radius:8px;font-size:.95rem}
+.contact button{padding:12px;background:var(--accent);color:#fff;border-radius:8px;font-weight:600}
+
+/* AUTH MODAL */
+.authbox{max-width:400px}
+.authbox h3{margin-bottom:16px}
+.authbox input{width:100%;padding:10px;margin-bottom:10px;border:1px solid #d6c4a8;border-radius:8px}
+.authbox button{width:100%;padding:12px;background:var(--accent);color:#fff;border-radius:8px;font-weight:600}
+
+/* FOOTER */
+footer{background:var(--dark);color:#d9cbb5;padding:30px 24px;text-align:center;margin-top:40px;font-size:.85rem}
+
+@media(max-width:700px){
+  .detail,.about,.form{grid-template-columns:1fr}
+  nav{gap:10px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand"><div class="logo">🐔</div>Golden Comb</div>
+  <div class="navlinks">
+    <button class="active" onclick="show('home')">Home</button>
+    <button onclick="show('menu')">Menu</button>
+    <button onclick="show('about')">About</button>
+    <button onclick="show('contact')">Contact</button>
+    <button onclick="show('admin')">Admin</button>
+  </div>
+  <div class="auth">
+    <button class="login" onclick="openAuth('login')">Login</button>
+    <button class="signup" onclick="openAuth('signup')">Sign Up</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="page">
+  <div class="hero">
+    <div class="content">
+      <h1>Farm-Fresh Chickens, Delivered to Your Door</h1>
+      <p>Premium free-range poultry raised with care. Choose by age, breed and availability — straight from our farm to your table.</p>
+      <div class="cta">
+        <button class="btn primary" onclick="show('menu')">Shop Chickens</button>
+        <button class="btn ghost" onclick="show('about')">Our Story</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>1,200+</b><span>Happy Customers</span></div>
+        <div class="stat"><b>3</b><span>Age Categories</span></div>
+        <div class="stat"><b>100%</b><span>Farm Raised</span></div>
+      </div>
+    </div>
+  </div>
+  <section>
+    <h2>Featured Chickens</h2>
+    <p class="sub">Hand-picked favorites from our flock.</p>
+    <div class="grid" id="featured"></div>
+  </section>
+  <section>
+    <h2>Shop by Age</h2>
+    <p class="sub">Find the right chicken for your needs.</p>
+    <div class="cats">
+      <div class="cat" onclick="filterCat('4-month')"><img src="4 Months Old Chicken/1.jpg" alt=""><div class="info"><h3>4-Month-Old</h3><p>Young, tender, ideal for grilling.</p><span class="tag">Tender</span></div></div>
+      <div class="cat" onclick="filterCat('5-month')"><img src="5 Months Old Chicken/1.jpg" alt=""><div class="info"><h3>5-Month-Old</h3><p>Balanced flavor, great for roasting.</p><span class="tag">Balanced</span></div></div>
+      <div class="cat" onclick="filterCat('6-month+')"><img src="6 Months Old Chicken or Older/1.jpg" alt=""><div class="info"><h3>6-Month & Older</h3><p>Rich flavor, perfect for stewing.</p><span class="tag">Rich</span></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- MENU -->
+<div id="menu" class="page" style="display:none">
+  <section>
+    <h2>Our Chickens</h2>
+    <p class="sub">Browse all available chickens.</p>
+    <div class="toolbar">
+      <input id="search" placeholder="Search breed..." oninput="renderProducts()">
+      <select id="catFilter" onchange="renderProducts()">
+        <option value="all">All Ages</option>
+        <option value="4-month">4-Month-Old</option>
+        <option value="5-month">5-Month-Old</option>
+        <option value="6-month+">6-Month & Older</option>
+      </select>
+      <select id="availFilter" onchange="renderProducts()">
+        <option value="all">All Availability</option>
+        <option value="in">In Stock</option>
+        <option value="out">Out of Stock</option>
+      </select>
+    </div>
+    <div class="grid" id="products"></div>
+  </section>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="page" style="display:none">
+  <section>
+    <div class="about">
+      <img src="5 Months Old Chicken/2.jpg" alt="">
+      <div>
+        <h2>Our Story</h2>
+        <p>Golden Comb Poultry was founded on a simple belief: everyone deserves access to clean, healthy, ethically raised chicken. Our birds roam freely on open pasture, fed a balanced natural diet with no antibiotics.</p>
+        <p>We categorize our chickens by age so you always know exactly what you're getting — tender young birds for grilling, balanced 5-month birds for roasting, and mature birds for rich, flavorful stews.</p>
+        <p>From our family farm to your kitchen, we're committed to quality, transparency, and care.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="page" style="display:none">
+  <section>
+    <h2>Contact Us</h2>
+    <p class="sub">We'd love to hear from you.</p>
+    <div class="contact">
+      <form onsubmit="event.preventDefault();alert('Message sent! We will get back to you soon.')">
+        <input placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p style="margin-top:20px;color:var(--muted)">📍 Farm Road 12, Countryside<br>📞 +1 (555) 012-3456<br>✉️ hello@goldencomb.farm</p>
+    </div>
+  </section>
+</div>
+
+<!-- ADMIN -->
+<div id="admin" class="page" style="display:none">
+  <section>
+    <h2>Admin Dashboard</h2>
+    <p class="sub">Manage chicken listings, prices and inventory.</p>
+    <div class="admin">
+      <div class="form">
+        <input id="aName" placeholder="Chicken name / breed">
+        <select id="aCat">
+          <option value="4-month">4-Month-Old</option>
+          <option value="5-month">5-Month-Old</option>
+          <option value="6-month+">6-Month & Older</option>
+        </select>
+        <input id="aBreed" placeholder="Breed">
+        <input id="aAge" type="number" placeholder="Age (months)">
+        <input id="aPrice" type="number" placeholder="Price">
+        <input id="aStock" type="number" placeholder="Stock">
+        <input id="aImg" placeholder="Image URL">
+        <textarea id="aDesc" placeholder="Description"></textarea>
+        <button onclick="addProduct()">Add / Update Chicken</button>
+      </div>
+      <table>
+        <thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
+        <tbody id="adminTable"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modalbox">
+    <span class="close" onclick="closeModal()">×</span>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal" id="authModal">
+  <div class="modalbox authbox">
+    <span class="close" onclick="closeAuth()">×</span>
+    <div id="authContent"></div>
+  </div>
+</div>
+
+<footer>© 2026 Golden Comb Poultry — Farm raised with love. All rights reserved.</footer>
+
+<script>
+const IMG='4%20Months%20Old%20Chicken/1.jpg';
+function imgs(cat,n){return cat+'/'+n+'.jpg';}
+const cats=[
+ {key:'4-month',folder:'4 Months Old Chicken',label:'4-Month-Old',breed:'Heritage Chicken',age:4,price:12.50},
+ {key:'5-month',folder:'5 Months Old Chicken',label:'5-Month-Old',breed:'Heritage Chicken',age:5,price:16.00},
+ {key:'6-month+',folder:'6 Months Old Chicken or Older',label:'6-Month & Older',breed:'Heritage Chicken',age:6,price:20.00}
+];
+let products=[];
+let pid=1;
+cats.forEach(c=>{
+  for(let i=1;i<=5;i++){
+    products.push({id:pid++,name:c.label+' Chicken #'+i,cat:c.key,breed:c.breed,age:c.age,price:c.price+ (i-1)*0.5,stock:[15,8,0,12,5][i-1]??10,img:c.folder+'/'+i+'.jpg',desc:'Premium free-range chicken, '+c.age+' months old. Fresh from our farm.'});
+  }
+});
+let editing=null;
+
+function show(page){
+  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+  document.getElementById(page).style.display='block';
+  document.querySelectorAll('.navlinks button').forEach(b=>b.classList.remove('active'));
+  const map={home:0,menu:1,about:2,contact:3,admin:4};
+  document.querySelectorAll('.navlinks button')[map[page]].classList.add('active');
+  if(page==='menu')renderProducts();
+  if(page==='admin')renderAdmin();
+  if(page==='home')renderFeatured();
+  window.scrollTo(0,0);
+}
+function catLabel(c){return c==='4-month'?'4-Month-Old':c==='5-month'?'5-Month-Old':'6-Month & Older';}
+function renderFeatured(){
+  const f=document.getElementById('featured');
+  f.innerHTML=products.slice(0,3).map(p=>cardHTML(p)).join('');
+}
+function cardHTML(p){
+  return `<div class="card">
+    <img src="${p.img}" alt="${p.name}">
+    <div class="body">
+      <h4>${p.name}</h4>
+      <div class="meta"><span>${p.breed}</span><span>${p.age} mo</span></div>
+      <div class="price">$${p.price.toFixed(2)}</div>
+      <span class="avail ${p.stock>0?'in':'out'}">${p.stock>0?'In Stock ('+p.stock+')':'Out of Stock'}</span>
+      <div class="actions"><button class="view" onclick="viewDetail(${p.id})">View</button><button class="buy" onclick="buy(${p.id})">Buy</button></div>
+    </div>
+  </div>`;
+}
+function renderProducts(){
+  const q=document.getElementById('search').value.toLowerCase();
+  const c=document.getElementById('catFilter').value;
+  const a=document.getElementById('availFilter').value;
+  let list=products.filter(p=>
+    p.name.toLowerCase().includes(q)||p.breed.toLowerCase().includes(q));
+  if(c!=='all')list=list.filter(p=>p.cat===c);
+  if(a==='in')list=list.filter(p=>p.stock>0);
+  if(a==='out')list=list.filter(p=>p.stock===0);
+  document.getElementById('products').innerHTML=list.map(cardHTML).join('')||'<p style="color:var(--muted)">No chickens found.</p>';
+}
+function filterCat(c){
+  show('menu');
+  document.getElementById('catFilter').value=c;
+  renderProducts();
+}
+function viewDetail(id){
+  const p=products.find(x=>x.id===id);
+  document.getElementById('modalContent').innerHTML=`
+    <div class="detail">
+      <img src="${p.img}" alt="${p.name}">
+      <div>
+        <h3>${p.name}</h3>
+        <div class="price">$${p.price.toFixed(2)}</div>
+        <ul>
+          <li><b>Breed:</b> ${p.breed}</li>
+          <li><b>Age:</b> ${p.age} months</li>
+          <li><b>Category:</b> ${catLabel(p.cat)}</li>
+          <li><b>Stock:</b> ${p.stock}</li>
+          <li><b>Status:</b> ${p.stock>0?'Available':'Out of Stock'}</li>
+        </ul>
+        <p>${p.desc}</p>
+        <button class="btn primary" style="margin-top:12px" onclick="buy(${p.id})">Add to Cart</button>
+      </div>
+    </div>`;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+function buy(id){
+  const p=products.find(x=>x.id===id);
+  if(p.stock<=0){alert('Sorry, out of stock.');return;}
+  p.stock--; alert('Added to cart: '+p.name); renderProducts(); renderAdmin();
+}
+function renderAdmin(){
+  document.getElementById('adminTable').innerHTML=products.map(p=>`
+    <tr><td>${p.name}</td><td>${catLabel(p.cat)}</td><td>$${p.price.toFixed(2)}</td><td>${p.stock}</td>
+    <td><button class="edit" onclick="editProduct(${p.id})">Edit</button><button class="del" onclick="delProduct(${p.id})">Delete</button></td></tr>`).join('');
+}
+function addProduct(){
+  const name=document.getElementById('aName').value.trim();
+  if(!name){alert('Name required');return;}
+  const obj={
+    id:editing||Date.now(),
+    name,
+    cat:document.getElementById('aCat').value,
+    breed:document.getElementById('aBreed').value,
+    age:+document.getElementById('aAge').value||0,
+    price:+document.getElementById('aPrice').value||0,
+    stock:+document.getElementById('aStock').value||0,
+    img:document.getElementById('aImg').value||IMG,
+    desc:document.getElementById('aDesc').value
+  };
+  if(editing){const i=products.findIndex(x=>x.id===editing);products[i]=obj;editing=null;}
+  else products.push(obj);
+  ['aName','aBreed','aAge','aPrice','aStock','aImg','aDesc'].forEach(id=>document.getElementById(id).value='');
+  renderAdmin(); renderProducts(); renderFeatured();
+}
+function editProduct(id){
+  const p=products.find(x=>x.id===id); editing=id;
+  document.getElementById('aName').value=p.name;
+  document.getElementById('aCat').value=p.cat;
+  document.getElementById('aBreed').value=p.breed;
+  document.getElementById('aAge').value=p.age;
+  document.getElementById('aPrice').value=p.price;
+  document.getElementById('aStock').value=p.stock;
+  document.getElementById('aImg').value=p.img;
+  document.getElementById('aDesc').value=p.desc;
+  window.scrollTo(0,0);
+}
+function delProduct(id){if(confirm('Delete this chicken?')){products=products.filter(x=>x.id!==id);renderAdmin();renderProducts();renderFeatured();}}
+
+function openAuth(mode){
+  const c=document.getElementById('authContent');
+  if(mode==='login'){
+    c.innerHTML='<h3>Login</h3><input placeholder="Email"><input type="password" placeholder="Password"><button onclick="closeAuth()">Login</button>';
+  }else{
+    c.innerHTML='<h3>Sign Up</h3><input placeholder="Full Name"><input placeholder="Email"><input type="password" placeholder="Password"><button onclick="closeAuth()">Create Account</button>';
+  }
+  document.getElementById('authModal').classList.add('open');
+}
+function closeAuth(){document.getElementById('authModal').classList.remove('open');}
+
+renderFeatured();
+</script>
+</body>
+</html>

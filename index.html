@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jude Jaime I. Masaglang — Portfolio</title>
+<style>
+:root{
+  --bg:#0b1220; --card:#111a2e; --ink:#e6edf7; --muted:#9aa8c7;
+  --accent:#4f8cff; --accent2:#7c5cff; --border:#1f2a44;
+}
+:root.light{
+  --bg:#f5f7fb; --card:#ffffff; --ink:#1a2236; --muted:#5a6685;
+  --accent:#2b6cff; --accent2:#6c47ff; --border:#d9e0f0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;transition:background .3s,color .3s}
+a{color:var(--accent);text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;gap:18px;padding:14px 0}
+.brand{font-weight:700;font-size:1.05rem}
+.navlinks{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.navlinks a{padding:8px 12px;border-radius:8px;font-size:.9rem;color:var(--ink)}
+.navlinks a:hover{background:var(--card)}
+.toggle{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--ink);cursor:pointer;font-size:.9rem}
+.hero{padding:80px 0 60px}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:8px}
+.hero .headline{color:var(--accent);font-weight:600;margin-bottom:16px}
+.hero p{color:var(--muted);max-width:640px;margin-bottom:24px}
+.btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:600;font-size:.95rem;margin-right:10px;margin-bottom:10px}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.ghost{border:1px solid var(--border);color:var(--ink)}
+section{padding:60px 0}
+h2{font-size:1.8rem;margin-bottom:6px}
+.sub{color:var(--muted);margin-bottom:28px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:20px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.badge{padding:4px 10px;border-radius:20px;font-size:.8rem;border:1px solid var(--border);color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.project{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px}
+.project h3{margin-bottom:6px}
+.project .cat{color:var(--accent);font-size:.85rem;font-weight:600;margin-bottom:8px}
+.project .links{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.project .links a{font-size:.85rem;padding:8px 14px;border-radius:8px;border:1px solid var(--border)}
+ul.skills{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+ul.skills li{background:var(--bg);border:1px solid var(--border);padding:4px 10px;border-radius:20px;font-size:.8rem;color:var(--muted)}
+.learn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.learn-grid div{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;font-size:.9rem}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+footer{border-top:1px solid var(--border);padding:30px 0;color:var(--muted);font-size:.85rem;text-align:center}
+/* chat */
+#chatBtn{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;border:none;border-radius:50px;padding:12px 18px;cursor:pointer;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:100}
+#chatWin{position:fixed;bottom:80px;right:20px;width:320px;max-width:calc(100vw - 40px);background:var(--card);border:1px solid var(--border);border-radius:14px;display:none;flex-direction:column;overflow:hidden;z-index:100;box-shadow:0 12px 32px rgba(0,0,0,.4)}
+#chatWin.open{display:flex}
+#chatHead{padding:12px 16px;background:var(--accent);color:#fff;font-weight:600}
+#chatBody{padding:12px;height:260px;overflow:auto;font-size:.85rem}
+#chatBody .msg{margin-bottom:8px;padding:8px 10px;border-radius:8px;max-width:85%}
+#chatBody .bot{background:var(--bg);color:var(--ink)}
+#chatBody .user{background:var(--accent);color:#fff;margin-left:auto}
+#chatInput{display:flex;border-top:1px solid var(--border)}
+#chatInput input{flex:1;padding:10px;border:none;background:transparent;color:var(--ink);outline:none}
+#chatInput button{padding:10px 14px;background:var(--accent);color:#fff;border:none;cursor:pointer}
+@media(max-width:600px){.navlinks{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <div class="brand">Jude Jaime I. Masaglang</div>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#tech">Tech Stack</a>
+        <a href="#projects">Projects</a>
+        <a href="#learning">Learning</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="toggle" id="themeToggle" aria-label="Toggle theme">Dark</button>
+    </nav>
+  </div>
+</header>
+<main class="container">
+  <section class="hero">
+    <h1>Jude Jaime I. Masaglang</h1>
+    <div class="headline">2nd Year BSIT Student • Aspiring Web Developer</div>
+    <p>I'm a 2nd-year BSIT student who enjoys building practical web projects and learning how the web works. I'm focused on HTML, CSS, and JavaScript, and I host my projects on GitHub Pages.</p>
+    <a class="btn primary" href="https://github.com/judejaimemasaglang-lang" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn ghost" href="mailto:judejaime_masaglang@sjp2cd.edu.ph">Email</a>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p class="sub">Who I am and what I'm working toward.</p>
+    <div class="card">
+      <p>I am currently a 2nd Year Bachelor of Science in Information Technology (BSIT) student. I'm an aspiring web developer and a beginner-level programmer who learns by building small, practical projects.</p>
+      <p style="margin-top:10px">I work with front-end technologies and use Git and GitHub to manage and publish my projects on GitHub Pages. I'm continuously improving my programming fundamentals, web development skills, and project documentation.</p>
+    </div>
+  </section>
+
+  <section id="tech">
+    <h2>Tech Stack</h2>
+    <p class="sub">Technologies I have worked with.</p>
+    <div class="card">
+      <h3 style="margin-bottom:8px">Languages</h3>
+      <div class="badges">
+        <span class="badge">HTML</span>
+        <span class="badge">CSS</span>
+        <span class="badge">JavaScript</span>
+      </div>
+      <h3 style="margin:12px 0 8px">Tools & Platforms</h3>
+      <div class="badges">
+        <span class="badge">Git</span>
+        <span class="badge">GitHub</span>
+        <span class="badge">GitHub Pages</span>
+        <span class="badge">Visual Studio Code</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Featured Projects</h2>
+    <p class="sub">Web projects hosted on GitHub Pages.</p>
+    <div class="grid">
+      <div class="project">
+        <div class="cat">Web Development / Website</div>
+        <h3>Chicken Poultry (Golden Comb Poultry)</h3>
+        <p>A front-end poultry showcase website. Browse chickens by age category (4-month, 5-month, 6-month+), filter by availability, view product details in a modal, and manage listings through an in-browser admin form. Includes a contact form and an about section.</p>
+        <ul class="skills">
+          <li>HTML structure</li><li>CSS styling</li><li>JavaScript</li><li>DOM manipulation</li><li>Filtering & search</li><li>Responsive layout</li>
+        </ul>
+        <div class="badges"><span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span></div>
+        <div class="links">
+          <a href="https://github.com/judejaimemasaglang-lang/Jude-Poultry" target="_blank" rel="noopener">View Repository</a>
+          <a href="https://judejaimemasaglang-lang.github.io/Jude-Poultry/" target="_blank" rel="noopener">View Demo</a>
+        </div>
+      </div>
+      <div class="project">
+        <div class="cat">Web Development / Front-End Development</div>
+        <h3>Log In Web</h3>
+        <p>A front-end login page UI with username and password fields, a "Remember Me" checkbox, a forgot-password link, and a register link. Built as a UI demonstration; the form is not connected to any backend, database, or authentication service.</p>
+        <ul class="skills">
+          <li>HTML structure</li><li>CSS styling</li><li>Form design</li><li>Responsive design</li>
+        </ul>
+        <div class="badges"><span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JavaScript</span></div>
+        <div class="links">
+          <a href="https://github.com/judejaimemasaglang-lang/Jude" target="_blank" rel="noopener">View Repository</a>
+          <a href="https://judejaimemasaglang-lang.github.io/Jude/main.html" target="_blank" rel="noopener">View Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning">
+    <h2>Currently Learning</h2>
+    <p class="sub">Continuous improvement as a beginner-level developer.</p>
+    <div class="learn-grid">
+      <div>Programming fundamentals</div>
+      <div>Web development (HTML, CSS, JavaScript)</div>
+      <div>Git & GitHub workflow</div>
+      <div>Building practical applications</div>
+      <div>Project documentation</div>
+      <div>Clean and maintainable code</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Customer Service / Contact</h2>
+    <p class="sub">Get in touch.</p>
+    <div class="contact-card">
+      <p>For questions or feedback, reach me at:</p>
+      <p style="margin:10px 0"><strong>Email:</strong> <a href="mailto:judejaime_masaglang@sjp2cd.edu.ph">judejaime_masaglang@sjp2cd.edu.ph</a></p>
+      <p><strong>GitHub:</strong> <a href="https://github.com/judejaimemasaglang-lang" target="_blank" rel="noopener">github.com/judejaimemasaglang-lang</a></p>
+      <p style="margin-top:10px;color:var(--muted);font-size:.85rem">The chat button below is an automated front-end helper, not a live agent.</p>
+    </div>
+  </section>
+</main>
+<footer>© 2026 Jude Jaime I. Masaglang — 2nd Year BSIT Student • Aspiring Web Developer</footer>
+
+<button id="chatBtn" aria-label="Open customer service chat">Customer Service</button>
+<div id="chatWin">
+  <div id="chatHead">Customer Service</div>
+  <div id="chatBody"></div>
+  <div id="chatInput">
+    <input id="chatText" placeholder="Type a message...">
+    <button id="chatSend">Send</button>
+  </div>
+</div>
+
+<script>
+const root=document.documentElement;
+function applyTheme(t){root.classList.toggle('light',t==='light');document.getElementById('themeToggle').textContent=t==='light'?'Light':'Dark';try{localStorage.setItem('theme',t)}catch(e){}}
+let saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+const sys=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+applyTheme(saved||sys);
+document.getElementById('themeToggle').addEventListener('click',()=>{applyTheme(root.classList.contains('light')?'dark':'light')});
+
+const chatReplies=[
+  {q:/project|portfolio/i,r:"My featured projects are Chicken Poultry (Golden Comb Poultry) and Log In Web. Both are hosted on GitHub Pages. See the Projects section for links."},
+  {q:/skill|tech|language/i,r:"I work with HTML, CSS, and JavaScript, and use Git, GitHub, and GitHub Pages. I'm still learning and improving."},
+  {q:/contact|email|reach/i,r:"You can reach me at judejaime_masaglang@sjp2cd.edu.ph or via my GitHub profile."},
+  {q:/study|student|education/i,r:"I'm a 2nd Year BSIT student and an aspiring web developer."},
+];
+function addMsg(text,cls){const d=document.createElement('div');d.className='msg '+cls;d.textContent=text;document.getElementById('chatBody').appendChild(d);document.getElementById('chatBody').scrollTop=99999;}
+document.getElementById('chatBtn').addEventListener('click',()=>{document.getElementById('chatWin').classList.toggle('open');if(!document.getElementById('chatBody').children.length)addMsg("Hi! I'm an automated helper for Jude's portfolio. Ask about projects, skills, or contact info.","bot")});
+document.getElementById('chatSend').addEventListener('click',sendChat);
+document.getElementById('chatText').addEventListener('keydown',e=>{if(e.key==='Enter')sendChat()});
+function sendChat(){const inp=document.getElementById('chatText');const v=inp.value.trim();if(!v)return;addMsg(v,'user');inp.value='';const r=chatReplies.find(x=>x.q.test(v));addMsg(r?r.r:"I'm an automated helper with limited replies. Please email judejaime_masaglang@sjp2cd.edu.ph for more details.",'bot')}
+</script>
+</body>
+</html>
